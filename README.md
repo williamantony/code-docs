@@ -1,1 +1,2 @@
-[User Authentication](/master/api/documentation/Users.md)
+* [User Authentication API](/api/documentation/Users.md)  
+* [Documentations API](/api/documentation/Users.md)
