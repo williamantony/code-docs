@@ -24,3 +24,5 @@ yarn.lock
 package-lock.json
 
 README.md
+/database/data
+/src

@@ -16,7 +16,7 @@
     "react-scripts": "1.1.0"
   },
   "scripts": {
-    "mon": "clear;nodemon api/server.js",
+    "mon": "clear; nodemon api/server.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

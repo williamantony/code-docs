@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const User = require('../../database/user.model.js');
+const Documentation = require('../../database/documentation.model.js');
+
 const {
   userAuthentication,
 } = require('../controllers/index.js');
-
-const User = require('../../database/user.model.js');
-const Documentation = require('../../database/documentation.model.js');
 
 const {
   SUCCESS,
