@@ -1,1 +1,1 @@
-[User Authentication](/blob/master/api/documentation/Users.md)
+[User Authentication](/master/api/documentation/Users.md)
