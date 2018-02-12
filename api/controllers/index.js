@@ -16,8 +16,9 @@ const userAuthentication = (req, res, next) => {
     
     if (!authorized) {
 
-      res.status(UNAUTHORIZED);
-      res.json({ 
+      /* Should be UNAUTHORIZED */
+      res.status(SUCCESS);
+      res.json({
         authorized,
         error: 'User not logged in'
       });
