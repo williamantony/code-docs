@@ -1,0 +1,56 @@
+.Input {
+  position: relative;
+  margin: 3px;
+}
+
+.Input > input.Input__field {
+  width: calc(100% - 95px);
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.25px;
+  padding: 15px;
+  padding-right: 80px;
+  border: 0px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.075);
+  background-color: #fff;
+}
+.Input.Input--reversed > input.Input__field {
+  padding-right: 15px;
+  padding-left: 80px;
+}
+
+.Input > .Input__button {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 75px;
+  height: 100%;
+  border: 0px;
+  box-shadow: 0px 0px 0px 0px #000;
+  background-color: transparent;
+  background-size: 20px auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.Input > button.Input__button {
+  cursor: pointer;
+}
+.Input > .Input__button:not(button) {
+  cursor: text;
+}
+.Input.Input--reversed > .Input__button {
+  left: 0px;
+}
+
+
+.Input[data-type="search"] > .Input__button {
+  background-image: url('./images/search-icon-black.png');
+}
+.Input[data-type="email"] > .Input__button {
+  background-image: url('./images/email-icon-black.png');
+}
+.Input[data-type="password"] > .Input__button {
+  background-image: url('./images/password-icon-black.png');
+}

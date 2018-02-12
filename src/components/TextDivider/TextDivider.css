@@ -1,0 +1,18 @@
+.Divider {
+  max-height: 0px;
+  text-align: center;
+  line-height: 0px;
+  margin: 35px 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+.Divider > .text {
+  color: #555;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
+  letter-spacing: 0.25px;
+  padding: 0px 10px;
+  background-color: #e5e5e5;
+}
