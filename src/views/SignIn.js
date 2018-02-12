@@ -45,7 +45,7 @@ class SignIn extends Component {
       .then(response => {
         
         const { token } = response.data;
-
+        
         window.localStorage.setItem('token', token);
 
         this.props.history.push('/');

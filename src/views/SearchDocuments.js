@@ -1,48 +1,47 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  authorizeUser
+} from '../redux/actions';
+
 import axios from 'axios';
 
 import ScreenView from '../components/ScreenView/ScreenView';
 import Filter from '../components/Filter/Filter';
 import List from '../components/List/List';
 import TextDivider from '../components/TextDivider/TextDivider';
+import { runInThisContext } from 'vm';
 
 class SearchDocuments extends Component {
   
-  state = {
-    visible: false,
-  }
 
+  state = {
+    visible: this.props.authorized || false,
+  }
+  
   componentWillMount() {
 
-    const endpoint = 'http://localhost:5000/api/users/authorize';
-
-    const token = window.localStorage.getItem('token');
-
-    axios
-      .post(endpoint, {}, {
-        headers: {
-          authorization: token,
-        },
-      })
+    this.props.authorizeUser()
       .then(response => {
-
-        const { authorized } = response.data;
+        
+        const { authorized } = response.payload.data;
 
         if (!authorized) {
+
           this.props.history.push('/signin');
+  
         } else {
+  
           this.setState({
             visible: true,
           });
+  
         }
 
-      })
-      .catch(error => {        
-        this.props.history.push('/signin');
       });
 
   }
-
+  
   render() {
 
     return (
@@ -62,4 +61,12 @@ class SearchDocuments extends Component {
 
 }
 
-export default SearchDocuments;
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  authorizeUser
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchDocuments);
