@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { authorizeUser } from '../redux/actions';
 
 import axios from 'axios';
 
@@ -18,6 +20,8 @@ class SignIn extends Component {
   componentWillMount() {
 
     window.localStorage.removeItem('token');
+
+    this.props.authorizeUser();
 
   }
 
@@ -68,4 +72,12 @@ class SignIn extends Component {
 
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  authorizeUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
