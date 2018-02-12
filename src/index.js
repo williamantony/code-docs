@@ -8,6 +8,7 @@ import reducers from './redux/reducers/users.reducer';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import Header from './components/Header/Header';
 
 import SignUp from './views/SignUp';
 import SignIn from './views/SignIn';
@@ -22,6 +23,8 @@ ReactDOM.render(
   <Provider store={ createStoreWithMiddleware(reducers) } >
     <Router>
       <div>
+        <Route path="/" component={ Header } />
+
         <Route exact path="/signup" component={ SignUp } />
         <Route exact path="/signin" component={ SignIn } />
         <Route exact path="/signout" component={ SignOut } />
