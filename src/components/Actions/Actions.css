@@ -1,0 +1,23 @@
+.Actions {
+  display: flex;
+  flex-direction: 'row';
+  justify-content: center;
+  align-items: center;
+}
+button.Actions__addDocumentation {
+  width: 90px;
+  height: 51px;
+  color: #fff;
+  font-size: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  border: 0px;
+  border-radius: 3px;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.075);
+  margin-right: 10px;
+  background-color: #4caf50;
+  cursor: pointer;
+}
+button.Actions__addDocumentation::after {
+  content: '+';
+}

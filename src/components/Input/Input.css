@@ -45,6 +45,7 @@
 }
 
 
+
 .Input[data-type="search"] > .Input__button {
   background-image: url('./images/search-icon-black.png');
 }
@@ -53,4 +54,7 @@
 }
 .Input[data-type="password"] > .Input__button {
   background-image: url('./images/password-icon-black.png');
+}
+.Input[data-type="hyperlink"] > .Input__button {
+  background-image: url('./images/hyperlink-icon-black.png');
 }

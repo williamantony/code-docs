@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  authorizeUser
-} from '../redux/actions';
-
-import axios from 'axios';
+import { authorizeUser } from '../redux/actions';
 
 import ScreenView from '../components/ScreenView/ScreenView';
-import Filter from '../components/Filter/Filter';
+import Actions from '../components/Actions/Actions';
 import List from '../components/List/List';
 import TextDivider from '../components/TextDivider/TextDivider';
-import { runInThisContext } from 'vm';
 
 class SearchDocuments extends Component {
   
-
   state = {
     visible: this.props.authorized || false,
   }
@@ -47,7 +41,7 @@ class SearchDocuments extends Component {
     return (
       <ScreenView visible={ this.state.visible } >
 
-        <Filter />
+        <Actions history={ this.props.history } />
 
         <TextDivider
           innerText="25 Documentations available" />

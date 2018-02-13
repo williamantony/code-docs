@@ -13,7 +13,7 @@
   z-index: 1;
 }
 .Card__title {
-  color: #1a2355;
+  color: #333333;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -24,10 +24,10 @@
   display: inline-block;
   vertical-align: middle;
   width: 100%;
-  color: #555555;
+  color: #777777;
   font-size: 17px;
   font-family: 'Roboto', sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0.5px;
   text-decoration: none;
   text-overflow: ellipsis;
