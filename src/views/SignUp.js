@@ -70,7 +70,7 @@ class SignUp extends Component {
 
         <form
           className="Form wrapper"
-          style={{ maxWidth: 480, padding: 20 }}
+          style={{ maxWidth: 480 }}
           onSubmit={ this.handleSignUp } >
 
           <div className="Title">

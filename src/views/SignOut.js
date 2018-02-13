@@ -29,7 +29,7 @@ class SignIn extends Component {
 
         <div 
           className="Form wrapper" 
-          style={{ maxWidth: 480, padding: 20 }} >
+          style={{ maxWidth: 480 }} >
 
           <div className="Title">
             You are logged out

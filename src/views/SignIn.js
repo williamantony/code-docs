@@ -62,7 +62,7 @@ class SignIn extends Component {
 
         <form 
           className="Form wrapper" 
-          style={{ maxWidth: 480, padding: 20 }}
+          style={{ maxWidth: 480 }}
           onSubmit={ this.handleSignIn } >
 
           <div className="Title">
