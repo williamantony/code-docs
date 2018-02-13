@@ -13,7 +13,7 @@
   z-index: 1;
 }
 .Card__title {
-  color: dodgerblue;
+  color: #1a2355;
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
@@ -43,6 +43,7 @@
   margin-top: 20px;
 }
 .Card__button {
+  display: none;
   color: #E91E63;
   font-size: 17px;
   font-family: 'Roboto', sans-serif;

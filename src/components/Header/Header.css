@@ -1,4 +1,5 @@
 header.Header {
+  margin-bottom: 25px;
   background-color: #444;
 }
 .Header__content {
@@ -6,22 +7,49 @@ header.Header {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  max-width: 480px;;
   min-height: 75px;
-  margin: 0px 25px;
+  margin: 0px auto;
+  transition: max-width 0.15s linear 0s;
+}
+.Header__content--authorized {
+  max-width: 640px;;
 }
 .Header__title {
+  width: 100%;
   color: #fff;
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.25);
   letter-spacing: 1px;
-  margin-left: 10px;
+  margin-left: 20px;
   border-radius: 25px;
   cursor: pointer;
 }
 .Header__title--highlight {
   font-weight: 700;
   text-transform: uppercase;
-  margin-left: 1px;
+  margin-left: 2px;
 }
+
+.Header__button {
+  width: 50px;
+  height: 50px;
+  border: 0px;
+  box-shadow: 0px 0px 0px 0px #000;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+.Header__button--back {
+  background-image: url('./images/left-arrow-icon-white.png');
+  background-size: 50% auto;
+}
+.Header__button--signout {
+  background-image: url('./images/signout-icon-white.png');
+  background-size: 50% auto;
+}
+

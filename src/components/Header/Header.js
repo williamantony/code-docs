@@ -14,32 +14,25 @@ class Header extends Component {
 
   render() {
 
+    const headerClass = 'Header__content'
+                      + ((this.props.authorized) ? ' Header__content--authorized' : '');
+
     return (
       <header className="Header">
-        <div className="Header__content">
+        <div className={ headerClass }>
+
+          <button 
+            className="Header__button Header__button--back"
+            onClick={ this.props.history.goBack } />
 
           <div className="Header__title">
-            Code<span className="Header__title--highlight">Docs</span>
+            Developer<span className="Header__title--highlight">Docs</span>
           </div>
           
           {
             (this.props.authorized) ?
-            <Button
-              innerText="Sign Out"
-              styles={{
-                button: {
-                  fontSize: 16,
-                  fontWeight: '400',
-                  maxWidth: 100,
-                  marginRight: 10,
-                  textShadow: '0 0 0',
-                  boxShadow: '0 0 0 0',
-                  backgroundColor: 'transparent'
-                },
-                text: {
-                  color: '#ffc107'
-                }
-              }}
+            <button
+              className="Header__button Header__button--signout"
               onClick={ this.handleSignOut } />
               : null
           }

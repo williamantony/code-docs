@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authorizeUser } from '../redux/actions';
 
-import axios from 'axios';
-
 import ScreenView from '../components/ScreenView/ScreenView';
-import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import TextDivider from '../components/TextDivider/TextDivider';
 
