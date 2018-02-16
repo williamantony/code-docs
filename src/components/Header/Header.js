@@ -15,7 +15,7 @@ class Header extends Component {
 
   componentWillMount() {
     
-    this.props.checkAuth(this, false);
+    // this.props.checkAuth(this, false);
 
   }
 
