@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authorizeUser } from '../redux/actions';
+import { checkAuth } from '../redux/actions';
 
 import ScreenView from '../components/ScreenView/ScreenView';
 import Actions from '../components/Actions/Actions';
@@ -10,32 +10,15 @@ import TextDivider from '../components/TextDivider/TextDivider';
 class SearchDocuments extends Component {
   
   state = {
-    visible: this.props.authorized || false,
+    visible: false,
   }
   
   componentWillMount() {
 
-    this.props.authorizeUser()
-      .then(response => {
-        
-        const { authorized } = response.payload.data;
-
-        if (!authorized) {
-
-          this.props.history.push('/signin');
-  
-        } else {
-  
-          this.setState({
-            visible: true,
-          });
-  
-        }
-
-      });
+    this.props.checkAuth(this, true);
 
   }
-  
+
   render() {
 
     return (
@@ -60,7 +43,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  authorizeUser
+  checkAuth,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchDocuments);

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { authorizeUser } from '../redux/actions';
 
 import ScreenView from '../components/ScreenView/ScreenView';
 import Button from '../components/Button/Button';
@@ -16,9 +15,19 @@ class SignIn extends Component {
 
   componentWillMount() {
 
-    window.localStorage.removeItem('token');
+    if (window.localStorage.getItem('token')) {
 
-    this.props.authorizeUser();
+      window.localStorage.removeItem('token');
+      
+      setTimeout(() => {
+        this.props.history.push('/signin');
+      }, 1000);
+    
+    } else {
+
+      this.props.history.push('/signin');
+      
+    }
 
   }
 
@@ -28,37 +37,16 @@ class SignIn extends Component {
       <ScreenView>
 
         <div 
-          className="Form wrapper" 
+          className="wrapper" 
           style={{ maxWidth: 480 }} >
 
-          <div className="Title">
-            You are logged out
-          </div>
-
           <TextDivider 
-            innerText="Do you want to sign back in ?"
+            innerText="Signing Out ..."
             styles={{
               divider: {
                 marginTop: 100
               }
             }} />
-
-          <Link
-            to="/signin">
-
-            <Button
-              innerText="Sign In"
-              styles={{
-                button: {
-                  display: 'block',
-                  minWidth: 150, 
-                  marginLeft: 'auto', 
-                  marginRight: 'auto', 
-                  backgroundColor: '#777' 
-                }
-              }} />
-
-          </Link>
 
         </div>
 
@@ -74,7 +62,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  authorizeUser,
+  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

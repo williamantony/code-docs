@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { checkAuth } from '../redux/actions';
 
 import axios from 'axios';
 
@@ -17,11 +19,9 @@ class SignUp extends Component {
   }
 
   handleInput = (event, name) => {
-
-    const { value } = event.target;
+    
     const modifier = {};
-
-    modifier[name] = value;
+    modifier[name] = event.target.value;
 
     this.setState(modifier);
 
@@ -40,11 +40,12 @@ class SignUp extends Component {
 
     if (password === confirmPassword) {
 
-      axios
-        .post(endpoint, {
-          email,
-          password,
-        })
+      const data = {
+        email,
+        password,
+      };
+
+      axios.post(endpoint, data)
         .then(response => {
 
           const { success } = response.data;
@@ -60,6 +61,12 @@ class SignUp extends Component {
       alert('Passwords didn\'t match');
 
     }
+
+  }
+
+  componentWillMount() {
+    
+    this.props.checkAuth(this, false);
 
   }
 
@@ -160,4 +167,12 @@ class SignUp extends Component {
 
 }
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  checkAuth
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

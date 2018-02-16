@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { checkAuth } from '../redux/actions';
 
 import axios from 'axios';
 
@@ -13,6 +15,7 @@ class SignIn extends Component {
   state = {
     email: '',
     password: '',
+    visible: false,
   }
 
   handleInput = (event, name) => {
@@ -55,10 +58,16 @@ class SignIn extends Component {
 
   }
 
-  render() {
+  componentWillMount() {
 
+    this.props.checkAuth(this, false);
+
+  }
+
+  render() {
+    
     return (
-      <ScreenView>
+      <ScreenView visible={ this.state.visible }>
 
         <form 
           className="Form wrapper" 
@@ -73,7 +82,7 @@ class SignIn extends Component {
             type="email"
             placeholder="Email Address"
             value={ this.state.email }
-            onChange={ (e) => this.handleInput(e, 'email') } 
+            onChange={ (e) => this.handleInput(e, 'email') }
             reverseOrder={ true }
             fieldType="email" 
             autocomplete="email"
@@ -87,7 +96,7 @@ class SignIn extends Component {
             type="password"
             placeholder="Password"
             value={ this.state.password }
-            onChange={ (e) => this.handleInput(e, 'password') } 
+            onChange={ (e) => this.handleInput(e, 'password') }
             reverseOrder={ true }
             fieldType="password"
             autocomplete="current-password"
@@ -135,4 +144,12 @@ class SignIn extends Component {
 
 }
 
-export default SignIn;
+const mapStateToProps = state => {
+  return state;
+};
+
+const mapDispatchToProps = {
+  checkAuth,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
