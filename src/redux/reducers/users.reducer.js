@@ -3,14 +3,14 @@ import {
 } from '../actions';
 
 const initialState = {
-  authorized: false
+  authorized: false,
 };
 
 const users = (state = initialState, action) => {
   switch(action.type) {
 
     case AUTHORIZE_USER:
-      return action.payload.data;
+      return action.payload;
       
     default:
       return state;

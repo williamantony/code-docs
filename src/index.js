@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import ReduxPromise from 'redux-promise';
+
+import ReduxThunk from 'redux-thunk';
 import reducers from './redux/reducers/users.reducer';
 
 import { BrowserRouter as Router, Route } from 'react-router-dom';
@@ -18,10 +19,10 @@ import AddDocument from './views/AddDocument';
 
 import './index.css';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const store = createStore(reducers, applyMiddleware(ReduxThunk));
 
 ReactDOM.render(
-  <Provider store={ createStoreWithMiddleware(reducers) } >
+  <Provider store={ store } >
     <Router>
       <div>
         <Route path="/" component={ Header } />
@@ -34,6 +35,6 @@ ReactDOM.render(
         <Route exact path="/documentations/new" component={ AddDocument } />
       </div>
     </Router>
-  </Provider>, 
+  </Provider>,
   document.getElementById('root')
 );
