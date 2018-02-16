@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { authorizeUser } from '../redux/actions';
+import { checkAuth } from '../redux/actions';
+
+import axios from 'axios';
 
 import ScreenView from '../components/ScreenView/ScreenView';
 import Input from '../components/Input/Input';
@@ -9,29 +11,50 @@ import Button from '../components/Button/Button';
 class AddDocument extends Component {
 
   state = {
-    visible: this.props.authorized || false,
+    title: '',
+    url: '',
+    visible: false,
+  }
+
+  handleInput = (event, name) => {
+    
+    const { value } = event.target;
+    const modifier = {};
+
+    modifier[name] = value;
+
+    this.setState(modifier);
+
   }
   
-  componentWillMount() {
+  saveDocument = () => {
+    
+    const { title, url } = this.state;
 
-    this.props.authorizeUser()
-      .then(response => {
-        
-        const { authorized } = response.payload.data;
+    const endpoint = 'http://localhost:5000/api/documentations';
 
-        if (!authorized) {
+    const data = {
+      title,
+      url,
+    };
 
-          this.props.history.push('/signin');
-  
-        } else {
-  
-          this.setState({
-            visible: true,
-          });
-  
-        }
+    const token = window.localStorage.getItem('token');
 
-      });
+    const config = {
+      headers: {
+        authorization: token,
+      },
+    };
+    
+    const promise = axios.post(endpoint, data, config);
+
+    
+    
+  }
+
+  componentDidMount() {
+    
+    this.props.checkAuth(this, true);
 
   }
 
@@ -40,12 +63,32 @@ class AddDocument extends Component {
     return (
       <ScreenView visible={ this.state.visible }>
 
-        <div className="Form wrapper">
+        <form 
+          className="Form wrapper"
+          onSubmit={ (e) => e.preventDefault() } >
+
+          <div className="Title">Add new documentation</div>
 
           <Input 
             styles={{
               wrapper: {
-                margin: 10
+                marginHorizontal: 10
+              },
+              button: {
+                opacity: 0.25 
+              }
+            }}
+            reverseOrder={ true }
+            requireButton={ false }
+            fieldType="text"
+            placeholder="Enter a title"
+            onChange={ (e) => this.handleInput(e, 'title') }
+            />
+
+          <Input 
+            styles={{
+              wrapper: {
+                marginHorizontal: 10
               },
               button: {
                 opacity: 0.25 
@@ -55,9 +98,20 @@ class AddDocument extends Component {
             requireButton={ false }
             fieldType="hyperlink"
             placeholder="Enter documentation URL here"
+            onChange={ (e) => this.handleInput(e, 'url') }
             />
 
-        </div>
+          <Button
+            styles={{
+              button: {
+                marginTop: 10
+              }
+            }}
+            innerText="Save Documentation"
+            onClick={ this.saveDocument }
+            />
+
+        </form>
 
       </ScreenView>
     )
@@ -67,8 +121,11 @@ class AddDocument extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return state;
-}
+};
 
-export default connect(mapStateToProps, { authorizeUser })(AddDocument);
+const mapDispatchToProps = {
+  checkAuth,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddDocument);

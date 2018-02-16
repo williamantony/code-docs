@@ -27,7 +27,7 @@ class Input extends Component {
     const inputStyles = styles.input || {};
     const buttonStyles = styles.button || {};
 
-    const fieldType = this.props.fieldType || 'search';
+    const fieldType = this.props.fieldType || 'text';
 
     return (
       <div

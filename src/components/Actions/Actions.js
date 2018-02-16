@@ -39,8 +39,10 @@ class Actions extends Component {
           value={ this.state.input }
           placeholder="Search Documentations"
           requireButton={ true }
+          fieldType="search"
           onChange={ this.handleInput } 
           />
+
 
         <button
           className="Actions__addDocumentation"

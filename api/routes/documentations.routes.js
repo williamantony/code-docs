@@ -1,19 +1,21 @@
+const Documentation = require('../../database/documentation.model');
+
 const {
   userAuthentication,
-} = require('../controllers/index.js');;
+} = require('../controllers/index.js');
 
 module.exports = (server) => {
 
-  server.post('/api/docs', userAuthentication, (req, res) => {
+  server.post('/api/documentations', userAuthentication, (req, res) => {
     
-    const { title, url } = req.body;
+    const { title, url, authorizedUser } = req.body;
 
     new Documentation({
       title,
       url,
-      owner,
+      ownedBy: authorizedUser,
     }).save()
-      .then((response) => {        
+      .then((response) => {
         res.status(STATUS.CREATED);
         res.json({ response });
       }) 
@@ -24,10 +26,12 @@ module.exports = (server) => {
 
   });
 
-  server.get('/api/docs', userAuthentication, (req, res) => {
+  server.get('/api/documentations', userAuthentication, (req, res) => {
     
+    const { authorizedUser } = req.body;
+
     Documentation
-      .find({})
+      .find({ ownedBy: authorizedUser })
       .then((response) => {
         res.status(STATUS.SUCCESS);
         res.json({ response });
