@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { checkAuth } from '../../redux/actions';
 
 import './Header.css';
 import Button from '../Button/Button';
@@ -12,10 +13,16 @@ class Header extends Component {
 
   }
 
+  componentWillMount() {
+    
+    this.props.checkAuth(this, false);
+
+  }
+
   render() {
 
-    const headerClass = 'Header__content'
-                      + ((this.props.authorized) ? ' Header__content--authorized' : '');
+    const headerClass = 'Header__content' + ((this.props.authorized) ? ' Header__content--authorized' : '');
+
 
     return (
       <header className="Header">
@@ -29,13 +36,12 @@ class Header extends Component {
             Developer<span className="Header__title--highlight">Docs</span>
           </div>
           
-          {
-            (this.props.authorized) ?
             <button
+              style={{
+                visibility: (this.props.authorized) ? 'visible' : 'hidden'
+              }}
               className="Header__button Header__button--signout"
               onClick={ this.handleSignOut } />
-              : null
-          }
 
         </div>
       </header>
@@ -49,4 +55,8 @@ const mapStateToProps = state => {
   return state;
 };
 
-export default connect(mapStateToProps, {  })(Header);
+const mapDispatchToProps = {
+  checkAuth,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
