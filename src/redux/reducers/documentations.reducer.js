@@ -1,16 +1,16 @@
 import {
-  AUTHORIZE_USER
+  CREATE_DOCUMENTATION
 } from '../actions';
 
 const initialState = {
-  authorized: false,
+  response: ''
 };
 
 export default (state = initialState, action) => {
   switch(action.type) {
 
-    case AUTHORIZE_USER:
-      console.log(AUTHORIZE_USER);
+    case CREATE_DOCUMENTATION:
+    console.log(action.payload);
       return action.payload;
       
     default:

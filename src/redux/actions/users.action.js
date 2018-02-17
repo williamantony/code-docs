@@ -20,7 +20,23 @@ export const checkAuth = (context, reqAuth = true) => {
 
     promise.then(response => {
 
-      validateAuthentication(response, context, reqAuth);
+      const { authorized } = response.data;
+
+      if (reqAuth) {
+
+        if (!authorized)
+          context.props.history.push('/signin');
+        else
+          context.setState({ visible: true });
+
+      } else {
+
+        if (authorized)
+          context.props.history.push('/');
+        else
+          context.setState({ visible: true });
+        
+      }
       
       dispatch({
         type: AUTHORIZE_USER,
@@ -31,29 +47,4 @@ export const checkAuth = (context, reqAuth = true) => {
     
   };
 
-};
-
-export const validateAuthentication = (response, context, reqAuth = true) => {
-  
-  const { authorized } = response.data;
-
-  if (reqAuth) {
-
-    if (!authorized){
-      context.props.history.push('/signin');
-    }
-    else{
-      context.setState({ visible: true });
-    }
-
-  } else {
-
-    if (authorized) {
-      context.props.history.push('/');
-    }
-    else{
-      context.setState({ visible: true });
-    }
-  }
-    
 };
