@@ -4,6 +4,13 @@ const {
   userAuthentication,
 } = require('../controllers/index.js');
 
+const {
+  SUCCESS,
+  CREATED,
+  USER_ERROR,
+  SERVER_ERROR,
+} = require('../status.codes.js');
+
 module.exports = (server) => {
 
   server.post('/api/documentations', userAuthentication, (req, res) => {
@@ -16,11 +23,11 @@ module.exports = (server) => {
       ownedBy: authorizedUser,
     }).save()
       .then((response) => {
-        res.status(STATUS.CREATED);
+        res.status(CREATED);
         res.json({ response });
       }) 
       .catch((error) => {
-        res.status(STATUS.USER_ERROR);
+        res.status(USER_ERROR);
         res.json({ error });
       });
 
@@ -33,11 +40,11 @@ module.exports = (server) => {
     Documentation
       .find({ ownedBy: authorizedUser })
       .then((response) => {
-        res.status(STATUS.SUCCESS);
+        res.status(SUCCESS);
         res.json({ response });
       })
       .catch((error) => {
-        res.status(STATUS.USER_ERROR);
+        res.status(USER_ERROR);
         res.json({ error });
       });
     
