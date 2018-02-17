@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { checkAuth } from '../../redux/actions';
 
 import './Header.css';
-import Button from '../Button/Button';
 
 class Header extends Component {
 

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { checkAuth } from '../redux/actions';
-
-import axios from 'axios';
+import { checkAuth, saveDocument } from '../redux/actions';
 
 import ScreenView from '../components/ScreenView/ScreenView';
 import Input from '../components/Input/Input';
@@ -31,24 +29,8 @@ class AddDocument extends Component {
     
     const { title, url } = this.state;
 
-    const endpoint = 'http://localhost:5000/api/documentations';
+    this.props.saveDocument(title, url);
 
-    const data = {
-      title,
-      url,
-    };
-
-    const token = window.localStorage.getItem('token');
-
-    const config = {
-      headers: {
-        authorization: token,
-      },
-    };
-    
-    const promise = axios.post(endpoint, data, config);
-
-    
     
   }
 
@@ -59,7 +41,7 @@ class AddDocument extends Component {
   }
 
   render() {
-
+    
     return (
       <ScreenView visible={ this.state.visible }>
 
@@ -126,6 +108,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   checkAuth,
+  saveDocument,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDocument);

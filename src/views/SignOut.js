@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import ScreenView from '../components/ScreenView/ScreenView';
-import Button from '../components/Button/Button';
 import TextDivider from '../components/TextDivider/TextDivider';
 
-class SignIn extends Component {
+class SignOut extends Component {
 
   state = {
     email: '',
@@ -65,4 +63,4 @@ const mapDispatchToProps = {
   
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignOut);
